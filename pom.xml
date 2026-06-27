@@ -10,7 +10,7 @@
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
-			<version>5.3.2</version>
+			<version>6.0.0</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>7.8.0</version>
+			<version>7.12.0</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -27,17 +27,41 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.17.0</version>
+			<version>2.22.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.32</version>
+			<version>1.18.46</version> <!-- Use 1.18.38 or 1.18.42 depending on your exact JDK -->
 			<scope>provided</scope>
 		</dependency>
-
-
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<!-- Adjust source/target to match your local JDK version (e.g., 17, 21, etc.) -->
+					<source>25</source>
+					<target>25</target>
+					<compilerArgs>
+						<arg>-proc:full</arg>
+					</compilerArgs>
+					<annotationProcessorPaths>
+						<!-- Must match your dependency version precisely -->
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.46</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
