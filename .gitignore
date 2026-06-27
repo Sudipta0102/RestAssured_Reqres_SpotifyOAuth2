@@ -30,3 +30,6 @@ local.properties
 
 # TestNG reporting
 test-output/
+
+# eclipse
+.settings
